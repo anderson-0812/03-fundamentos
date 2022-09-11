@@ -1,21 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
   <!-- con los : estoy vinculando este start con el prop del componente para q interprete el tipo de dato  -->
   <!-- <Counter :start="15"></Counter>  -->
-  <Counter :start="15"></Counter> 
+  <!-- <Counter :start="15"></Counter>  -->
   <!-- <Counter title="Entraron"></Counter> -->
   <!-- <Counter title=""></Counter> -->
+  <Indecision />
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import Counter from './components/Counter.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+// import Counter from './components/Counter.vue'
+import Indecision from './components/Indecision.vue'
 
 export default {
   name: 'App',
   components: {
-    Counter
-  }
+    // Counter,
+    Indecision,
+}
 }
 </script>
 
