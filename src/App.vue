@@ -1,7 +1,10 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <Counter title="Entraron"></Counter>
-  <Counter title=""></Counter>
+  <!-- con los : estoy vinculando este start con el prop del componente para q interprete el tipo de dato  -->
+  <!-- <Counter :start="15"></Counter>  -->
+  <Counter :start="15"></Counter> 
+  <!-- <Counter title="Entraron"></Counter> -->
+  <!-- <Counter title=""></Counter> -->
 </template>
 
 <script>

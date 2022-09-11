@@ -15,12 +15,23 @@
 <script>
 export default {
 
-  props: ['title'],
+  // props: ['title','start'],
+  props: {
+    title:String,
+    start: {
+      type: Number,
+      default:100,
+      // required:true
+      validator( value ) {
+        return value > 100 
+      }
+    }
+  },
     name:'Counter',
     // se crea dentro de la data xq de esta manera todo el obj lo q este dentro sera reactivo (que cualquier cambio que sufra va  areaccionar acorde)
     data() {
       return {
-        counter: 5
+        counter: this.start
       }
     },
     methods: {
@@ -28,12 +39,12 @@ export default {
         return this.counter * this.counter
       },
       increase(){
-        this.counter +=1 ;
+        this.counter ++ ;
 
       },
 
       decrease(){
-        this.counter -=1 ;
+        this.counter -- ;
 
 
       }
@@ -47,9 +58,9 @@ export default {
         return this.counter * this.counter
       },
       custumTitle(){
-        console.log('title', this.title.length);
+        // console.log('title', this.title);
 
-        return this.title.length ?  this.title: 'Counter';
+        return this.title ?  this.title: 'Counter';
         
 
       }
