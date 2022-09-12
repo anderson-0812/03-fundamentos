@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Indecision</h1>
-        <img src="https://previews.123rf.com/images/sergiimyronenko/sergiimyronenko1703/sergiimyronenko170300001/74821454-le%C3%B3n-rey-aislado-en-negro.jpg" alt="bg">
+        <img v-if="img" :src="img" alt="bg">
         <div class="bg-dark"></div>
         <div class="indecision-container">
             <input type="text" placeholder="Hazme una pregunta" v-model="question">
@@ -9,7 +9,7 @@
 
             <div>
                 <h2>{{ question }}</h2>
-                <h1>Si, No, Pensando...</h1>
+                <h1>{{ answer }}</h1>
             </div>
         </div>
 
@@ -23,7 +23,21 @@
 
         data (){
             return {
-                question: "Sere millonario?"
+                question: "Sere millonario?",
+                answer:null,
+                img: null
+                // img: "https://previews.123rf.com/images/sergiimyronenko/sergiimyronenko1703/sergiimyronenko170300001/74821454-le%C3%B3n-rey-aislado-en-negro.jpg"
+            }
+        },
+        methods:{
+            async getAnswer(){
+                this.answer = 'Pensando...'
+
+                const { answer, image } = await fetch('https://yesno.wtf/api').then( r => r.json() )
+                console.log(answer);
+
+                this.answer = answer
+                this.img = image
             }
         },
         watch: {
@@ -34,6 +48,9 @@
                 if ( !value.includes('?')) return;
 
                 //  TODO: realizar peticion php
+                // la mejor practica es llamar a una funcion 
+                this.getAnswer()
+
             }
         }
     }
