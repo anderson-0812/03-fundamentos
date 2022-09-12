@@ -4,11 +4,11 @@
         <img src="https://previews.123rf.com/images/sergiimyronenko/sergiimyronenko1703/sergiimyronenko170300001/74821454-le%C3%B3n-rey-aislado-en-negro.jpg" alt="bg">
         <div class="bg-dark"></div>
         <div class="indecision-container">
-            <input type="text" placeholder="Hazme una pregunta">
+            <input type="text" placeholder="Hazme una pregunta" v-model="question">
             <p>Recuerda terminar con un signo de interrogacion (?)</p>
 
             <div>
-                <h2>Sere millonario?</h2>
+                <h2>{{ question }}</h2>
                 <h1>Si, No, Pensando...</h1>
             </div>
         </div>
@@ -20,6 +20,12 @@
 
     export default {
         name: "Indecision",
+
+        data (){
+            return {
+                question: "Sere millonario?"
+            }
+        }
     }
 
 </script>
