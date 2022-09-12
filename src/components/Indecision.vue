@@ -25,6 +25,16 @@
             return {
                 question: "Sere millonario?"
             }
+        },
+        watch: {
+            question( value, oldValue){
+                console.log({value, oldValue});
+                console.log(value.includes('?'));
+
+                if ( !value.includes('?')) return;
+
+                //  TODO: realizar peticion php
+            }
         }
     }
 
