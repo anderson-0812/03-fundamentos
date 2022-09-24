@@ -7,7 +7,7 @@
             <input type="text" placeholder="Hazme una pregunta" v-model="question">
             <p>Recuerda terminar con un signo de interrogacion (?)</p>
 
-            <div>
+            <div v-if="isValidQuestion">
                 <h2>{{ question }}</h2>
                 <h1>{{ answer }}</h1>
             </div>
@@ -25,27 +25,46 @@
             return {
                 question: "Sere millonario?",
                 answer:null,
-                img: null
+                img: null,
                 // img: "https://previews.123rf.com/images/sergiimyronenko/sergiimyronenko1703/sergiimyronenko170300001/74821454-le%C3%B3n-rey-aislado-en-negro.jpg"
+                isValidQuestion: false
             }
         },
         methods:{
             async getAnswer(){
                 this.answer = 'Pensando...'
 
-                const { answer, image } = await fetch('https://yesno.wtf/api').then( r => r.json() )
-                console.log(answer);
+                let { answer, image } = await fetch('https://yesno.wtf/api').then( r => r.json() )
+                // console.log(answer);
+
+                switch(answer)
+                {
+                    case 'yes':
+                        answer = 'Si!';
+                        break;
+                    case 'no':
+                        answer = 'No!';
+                        break;
+                    case 'maybe':
+                        answer = 'Quizas';
+                        break;
+                }
 
                 this.answer = answer
                 this.img = image
             }
         },
         watch: {
+            // question es la propiedad reactiva que esta en el data no es una funcion  
             question( value, oldValue){
-                console.log({value, oldValue});
-                console.log(value.includes('?'));
+                // console.log({value, oldValue});
+                // console.log(value.includes('?'));
+
+                this.isValidQuestion = false;
 
                 if ( !value.includes('?')) return;
+
+                this.isValidQuestion = true;
 
                 //  TODO: realizar peticion php
                 // la mejor practica es llamar a una funcion 
